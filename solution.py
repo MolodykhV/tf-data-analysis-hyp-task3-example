@@ -1,11 +1,9 @@
 import pandas as pd
 import numpy as np
+from statsmodels.stats.weightstats import ztest
 
+chat_id = 238786813 # Ваш chat ID, не меняйте название переменной
 
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
-
-def solution(...) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+def solution(control, test) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
+    zt = ztest(test, value = control.mean(), alternative='smaller')
+    return zt[1] < 0.01
